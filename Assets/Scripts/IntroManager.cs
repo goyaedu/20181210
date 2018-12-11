@@ -8,6 +8,7 @@ public class IntroManager : PunBehaviour
 {
     public Button createButton;                 // 방 생성 버튼
     public GameObject createRoomPanelPrefab;    // 방 생성 팝업
+    public GameObject gameRoomCellPrefab;       // Cell 프리팹
     public Canvas canvas;
 
     string serverVer = "0.1";
@@ -72,19 +73,34 @@ public class IntroManager : PunBehaviour
 
     public override void OnJoinedRoom()
     {
-        // TODO: Game Scene으로 전환
-        // 방 만들기 위한 팝업 창 닫기
-
         Debug.Log("## OnJoinedRoom()");
+
+        if (createRoomPanelManager != null)
+        {
+            createRoomPanelManager.CreateRoomSuccess();
+        }
+
+        PhotonNetwork.isMessageQueueRunning = false;
+        PhotonNetwork.LoadLevel("Game");
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
     {
-        // TODO: 방을 선택할 수 있게 UI 갱신
+        
     }
 
+    // 방 생성 실패시 호출되는 메서드
     public override void OnPhotonCreateRoomFailed(object[] codeAndMsg)
     {
-        // TODO: 유저에게 방 생성 실패 알리기
+        if (createRoomPanelManager != null)
+        {
+            createRoomPanelManager.CreateRoomFailed();
+        }
+    }
+
+    public override void OnReceivedRoomListUpdate()
+    {
+        RoomInfo[] rooms = PhotonNetwork.GetRoomList();
+        Debug.Log(rooms);
     }
 }
