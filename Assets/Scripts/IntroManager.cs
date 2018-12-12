@@ -99,6 +99,15 @@ public class IntroManager : PunBehaviour
         }
     }
 
+    void Interactable(bool interactable)
+    {
+        foreach(GameObject cell in GameObject.FindGameObjectsWithTag("GameRoomCell"))
+        {
+            cell.GetComponent<Button>().interactable = interactable;
+        }
+        createButton.interactable = interactable;
+    }
+
     public override void OnReceivedRoomListUpdate()
     {
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("GameRoomCell"))
@@ -118,6 +127,14 @@ public class IntroManager : PunBehaviour
             GameRoomCell gameRoomCell =
                 gameRoomCellObject.GetComponent<GameRoomCell>();
             gameRoomCell.SetRoomInfo(gameRoomInfo);
+
+            // 셀 선택 동작
+            gameRoomCellObject.GetComponent<Button>().onClick.AddListener(
+                delegate
+                {
+                    Interactable(false);
+                    PhotonNetwork.JoinRoom(gameRoomInfo.roomName);
+                });
 
             scrollContent.GetComponent<RectTransform>().sizeDelta += 
                 new Vector2(0, 70);
