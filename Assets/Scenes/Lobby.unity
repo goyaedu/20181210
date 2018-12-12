@@ -858,7 +858,10 @@ MonoBehaviour:
   createButton: {fileID: 1323186374}
   createRoomPanelPrefab: {fileID: 1739719271347438, guid: 8ad62a0466ce115498b697bd088978a1,
     type: 2}
+  gameRoomCellPrefab: {fileID: 1246742888669530, guid: cd519ae3e349b834bac09a7ad4d091de,
+    type: 2}
   canvas: {fileID: 166681406}
+  scrollContent: {fileID: 1266189610}
 --- !u!4 &1228198714
 Transform:
   m_ObjectHideFlags: 0
@@ -903,7 +906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.0014202382}
   m_SizeDelta: {x: 0, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1266189612
@@ -1161,7 +1164,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 563912501}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999579
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

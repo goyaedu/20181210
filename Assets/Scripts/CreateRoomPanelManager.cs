@@ -65,6 +65,4 @@ public class CreateRoomPanelManager : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
-
-
 }
